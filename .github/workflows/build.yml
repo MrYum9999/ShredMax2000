@@ -1,0 +1,13 @@
+   name: Build Windows VST3
+   on: [push, workflow_dispatch]
+   jobs:
+     build:
+       runs-on: windows-latest
+       steps:
+         - uses: actions/checkout@v4
+         - run: cmake -B build
+         - run: cmake --build build --config Release --target ShredMaxx2000_VST3
+         - uses: actions/upload-artifact@v4
+           with:
+             name: ShredMaxx2000-VST3
+             path: build/ShredMaxx2000_artefacts/Release/VST3/
